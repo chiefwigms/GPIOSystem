@@ -22,7 +22,7 @@ def listGPIO():
                 arr.append(dirname[4:])
         if not arr:
             print('No active GPIO found - using default range!')
-            arr = range(GPIO_MIN, GPIO_MAX)
+            arr = list(range(GPIO_MIN, GPIO_MAX))
         return arr
     except:
         print('Error listing GPIO!')
@@ -39,7 +39,7 @@ def setupGPIO(device, value):
             with open( GPIO_PATH + ('/gpio%d/direction' % device), 'w') as fp:
                 fp.write('out')
     except:
-        print('Error setting up GPIO%d!' % device)
+        print(('Error setting up GPIO%d!' % device))
 
 def outputGPIO(device, value):
     #Outputs new GPIO value
@@ -48,7 +48,7 @@ def outputGPIO(device, value):
         with open(GPIO_PATH + ('/gpio%d/value' % device), 'w') as fp:
             fp.write(value)
     except:
-        print('Error writing to GPIO%d!' % device)
+        print(('Error writing to GPIO%d!' % device))
 
 
 @cbpi.actor
